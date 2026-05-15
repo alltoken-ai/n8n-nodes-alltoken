@@ -1,0 +1,72 @@
+{
+  "name": "n8n-nodes-alltoken",
+  "version": "0.2.0",
+  "description": "n8n community node for AllToken — unified OpenAI-compatible AI API (chat, image, video)",
+  "keywords": [
+    "n8n-community-node-package",
+    "n8n",
+    "alltoken",
+    "ai",
+    "llm",
+    "openai"
+  ],
+  "license": "MIT",
+  "homepage": "https://alltoken.ai",
+  "author": {
+    "name": "AllToken",
+    "email": "dev@alltoken.ai",
+    "url": "https://alltoken.ai"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alltoken-ai/n8n-nodes-alltoken.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alltoken-ai/n8n-nodes-alltoken/issues"
+  },
+  "main": "index.js",
+  "engines": {
+    "node": ">=20.15"
+  },
+  "scripts": {
+    "build": "tsc && gulp build:icons",
+    "dev": "tsc --watch",
+    "format": "prettier nodes credentials --write",
+    "lint": "eslint nodes credentials package.json",
+    "lintfix": "eslint nodes credentials package.json --fix",
+    "test": "jest --passWithNoTests",
+    "prepublishOnly": "npm run build && npm run lint"
+  },
+  "files": [
+    "dist",
+    "LICENSE"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/AllTokenApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/AllToken/AllToken.node.js",
+      "dist/nodes/AllTokenChatModel/AllTokenChatModel.node.js"
+    ]
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@typescript-eslint/parser": "^7.18.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-n8n-nodes-base": "^1.16.3",
+    "gulp": "^5.0.0",
+    "jest": "^29.7.0",
+    "n8n-workflow": "*",
+    "prettier": "^3.3.3",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.5.4"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  },
+  "dependencies": {
+    "@langchain/openai": "^1.4.5"
+  }
+}

@@ -1,0 +1,10 @@
+{
+	"node": "n8n-nodes-alltoken.allTokenChatModel",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["AI"],
+	"resources": {
+		"credentialDocumentation": [{ "url": "https://alltoken.ai" }],
+		"primaryDocumentation": [{ "url": "https://alltoken.ai" }]
+	}
+}

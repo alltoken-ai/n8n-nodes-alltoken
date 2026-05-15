@@ -1,0 +1,15 @@
+services:
+  n8n:
+    image: n8nio/n8n:latest
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_CUSTOM_EXTENSIONS=/custom-nodes
+      - N8N_LOG_LEVEL=debug
+    volumes:
+      - ./dist:/custom-nodes/n8n-nodes-alltoken/dist
+      - ./package.json:/custom-nodes/n8n-nodes-alltoken/package.json
+      - n8n_data:/home/node/.n8n
+
+volumes:
+  n8n_data:

@@ -58,8 +58,8 @@ jobs:
     permissions:
       # Required to mint an OIDC token for npm provenance attestation.
       id-token: write
-      # Scoped down from the default (write) for least-privilege publishing.
-      contents: read
+      # Required to create GitHub Releases automatically (last step below).
+      contents: write
 
     steps:
       - uses: actions/checkout@v4
@@ -92,3 +92,22 @@ jobs:
           npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create GitHub Release
+        # Auto-create a GitHub Release pointing at this tag, with a body that
+        # links to the npm version and the package README. If the release
+        # already exists (e.g. workflow re-run), this step is a no-op.
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="${GITHUB_REF#refs/tags/}"
+          VERSION="${TAG#v}"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release $TAG already exists, skipping."
+            exit 0
+          fi
+          gh release create "$TAG" \
+            --title "$TAG" \
+            --notes "Published to npm as \`n8n-nodes-alltoken@${VERSION}\` with [npm provenance](https://docs.npmjs.com/generating-provenance-statements).
+
+See [README](https://github.com/${{ github.repository }}#readme) for install instructions and [CHANGELOG](https://github.com/${{ github.repository }}/compare/) for full diff."

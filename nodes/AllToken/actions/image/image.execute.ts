@@ -91,7 +91,7 @@ export async function executeImageGenerate(
 			const r = error.response as ImageJobResponse;
 			throw new NodeOperationError(
 				ctx.getNode(),
-				`Image generation ${r.status}${r.error?.message ? `: ${r.error.message}` : ''} (job ${jobId})`,
+				`Image generation did not complete (status: ${r.status})${r.error?.message ? `. Reason: ${r.error.message}` : ''}. Job id: ${jobId}`,
 				{ itemIndex },
 			);
 		}
@@ -103,7 +103,7 @@ export async function executeImageGenerate(
 	if (!first) {
 		throw new NodeOperationError(
 			ctx.getNode(),
-			`Image generation returned no data (status=${finalJob.status})`,
+			`Image generation produced no data (status: ${finalJob.status})`,
 			{ itemIndex },
 		);
 	}

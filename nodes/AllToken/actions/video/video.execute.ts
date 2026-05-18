@@ -89,7 +89,7 @@ export async function executeVideoGetResult(
 	if (resp.status === 'failed' || resp.status === 'cancelled') {
 		throw new NodeOperationError(
 			ctx.getNode(),
-			`Video generation ${resp.status}${resp.error?.message ? `: ${resp.error.message}` : ''} (job ${id})`,
+			`Video generation did not complete (status: ${resp.status})${resp.error?.message ? `. Reason: ${resp.error.message}` : ''}. Job id: ${id}`,
 			{ itemIndex },
 		);
 	}

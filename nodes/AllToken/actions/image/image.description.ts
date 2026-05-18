@@ -14,7 +14,7 @@ export const imageOperations: INodeProperties[] = [
 				name: 'Generate',
 				value: 'generate',
 				action: 'Generate an image',
-				description: '从文本生成图片（同步等待出图）',
+				description: 'Generate an image from a text prompt (synchronous wait for completion)',
 			},
 		],
 		default: 'generate',

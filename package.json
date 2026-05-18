@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-alltoken",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "n8n community node for AllToken — unified OpenAI-compatible AI API (chat, image, video)",
   "keywords": [
     "n8n-community-node-package",
@@ -52,6 +52,7 @@
     ]
   },
   "devDependencies": {
+    "@n8n/node-cli": "^0.30.1",
     "@types/jest": "^29.5.12",
     "@typescript-eslint/parser": "^7.18.0",
     "eslint": "^8.57.0",

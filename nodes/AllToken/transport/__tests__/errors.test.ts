@@ -8,7 +8,7 @@ describe('describeAllTokenError', () => {
 		expect(result.message).toBe('Balance too low');
 		expect(result.description).toContain('insufficient_balance');
 		expect(result.description).toContain('req_123');
-		expect(result.description).toContain('余额不足');
+		expect(result.description).toContain('Insufficient AllToken account balance');
 	});
 
 	it('extracts a top-level request_id (the shape the live API returns for 404)', () => {
@@ -27,17 +27,17 @@ describe('describeAllTokenError', () => {
 
 	it('adds an actionable hint for 401', () => {
 		const result = describeAllTokenError(401, { error: { message: 'bad key' } });
-		expect(result.description).toContain('API Key');
+		expect(result.description).toContain('Invalid API key');
 	});
 
 	it('adds a hint for 410 image_already_retrieved', () => {
 		const result = describeAllTokenError(410, { error: { message: 'gone' } });
-		expect(result.description).toContain('一次性');
+		expect(result.description).toContain('one-shot delivery');
 	});
 
 	it('falls back gracefully when there is no envelope', () => {
 		const result = describeAllTokenError(500, undefined);
-		expect(result.message).toBe('AllToken API request failed');
+		expect(result.message).toBe('AllToken API request did not succeed');
 		expect(result.description).toBe('');
 	});
 });

@@ -14,10 +14,10 @@ interface DescribedError {
 }
 
 const HINTS: Record<number, string> = {
-	401: 'API Key 无效，请检查 AllToken 凭证。',
-	402: 'AllToken 账户余额不足，请前往 alltoken.ai 充值。',
-	410: '图片结果已被读取（一次性交付），请重新生成。',
-	429: '触发限流，请稍后重试或降低并发。',
+	401: 'Invalid API key. Check your AllToken credential.',
+	402: 'Insufficient AllToken account balance. Top up at alltoken.ai.',
+	410: 'Image result already retrieved (one-shot delivery). Generate a new image.',
+	429: 'Rate limited. Wait and retry, or reduce concurrency.',
 };
 
 /** Pure function: turn an HTTP status + response body into a human-readable message/description. */
@@ -26,7 +26,7 @@ export function describeAllTokenError(
 	body: AllTokenErrorEnvelope | undefined,
 ): DescribedError {
 	const envelope = body?.error;
-	const message = envelope?.message ?? 'AllToken API request failed';
+	const message = envelope?.message ?? 'AllToken API request did not succeed';
 	const requestId = envelope?.request_id ?? body?.request_id;
 	const parts = [
 		envelope?.code && `code: ${envelope.code}`,

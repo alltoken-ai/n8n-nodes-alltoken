@@ -108,6 +108,4 @@ jobs:
           fi
           gh release create "$TAG" \
             --title "$TAG" \
-            --notes "Published to npm as \`n8n-nodes-alltoken@${VERSION}\` with [npm provenance](https://docs.npmjs.com/generating-provenance-statements).
-
-See [README](https://github.com/${{ github.repository }}#readme) for install instructions and [CHANGELOG](https://github.com/${{ github.repository }}/compare/) for full diff."
+            --notes "Published to npm as \`n8n-nodes-alltoken@${VERSION}\` with [npm provenance](https://docs.npmjs.com/generating-provenance-statements). See [README](https://github.com/${{ github.repository }}#readme) for install instructions and [CHANGELOG](https://github.com/${{ github.repository }}/compare/) for full diff."
